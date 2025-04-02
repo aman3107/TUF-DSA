@@ -58,6 +58,9 @@ vector<int> quickSort(vector<int> &nums)
   }
   quick(nums, 0, nums.size() - 1);
   return nums;
+
+  // TC = O(NlogN)
+  // SC =  O(1)
 }
 
 int main()
