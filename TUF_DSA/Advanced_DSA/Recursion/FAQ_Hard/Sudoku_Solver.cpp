@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool areRulesMet(vector<vector<char>> &board, int row, int col, int digit)
+bool areRulesMet(vector<vector<char>> &board, int row, int col, char digit)
 {
   for (int i = 0; i < 9; i++)
   {
