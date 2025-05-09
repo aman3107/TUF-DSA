@@ -1,5 +1,27 @@
 #include "Node.h"
 
+bool isPalindromeBrute(Node *head)
+{
+  stack<int> st;
+  Node *temp = head;
+  while (temp != nullptr)
+  {
+    st.push(temp->data);
+    temp = temp->next;
+  }
+  temp = head;
+  while (temp != nullptr)
+  {
+    if (st.top() != temp->data)
+    {
+      return false;
+    }
+    temp = temp->next;
+    st.pop();
+  }
+  return true;
+}
+
 Node *reverseLL(Node *head)
 {
   if (head == nullptr || head->next == nullptr)
@@ -50,6 +72,6 @@ int main()
   Node *head = head->takeInput();
   // head = reverseLL(head);
   // head->print(head);
-  cout << isPalindrome(head);
+  cout << isPalindromeBrute(head);
   delete head;
 }
