@@ -173,5 +173,7 @@ int main()
   cout << "\nCloned Linked List with Random Pointers:" << endl;
   printClonedLinkedList(clonedList);
 
+  delete head;
+
   return 0;
 }
