@@ -1,6 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool checkKthBitSetOrNotLeft(int n, int k)
+{
+
+  k = 1 << (k - 1);
+  return (n & k) != 0;
+}
+
 bool checkKthBitSetOrNot(int n, int k)
 {
 
