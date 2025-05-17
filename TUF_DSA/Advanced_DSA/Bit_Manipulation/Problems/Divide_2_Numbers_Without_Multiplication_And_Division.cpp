@@ -31,9 +31,9 @@ int divide(int dividend, int divisor)
     ans += (1 << cnt);
     n = n - (d << cnt);
   }
-  if (ans >= (1 << 31) && isPositive)
+  if (ans == (1 << 31) && isPositive)
     return INT_MAX;
-  if (ans >= (1 << 31) && !isPositive)
+  if (ans == (1 << 31) && !isPositive)
     return INT_MIN;
   return isPositive ? ans : -ans;
 }
