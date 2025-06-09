@@ -1,6 +1,32 @@
 #include "BinaryTree.h"
 
-int floorVal(TreeNode *root, int key)
+vector<int> floorAndceildata(TreeNode *root, int key)
+{
+  int floor = -1;
+  int ceil = -1;
+  while (root)
+  {
+    if (root->data == key)
+    {
+      floor = root->data;
+      ceil = root->data;
+      break;
+    }
+    if (root->data < key)
+    {
+      floor = root->data;
+      root = root->right;
+    }
+    else
+    {
+      ceil = root->data;
+      root = root->left;
+    }
+  }
+  return {floor, ceil};
+}
+
+int floordata(TreeNode *root, int key)
 {
   int floor = -1;
   while (root)
@@ -23,7 +49,7 @@ int floorVal(TreeNode *root, int key)
   return floor;
 }
 
-int ceilVal(TreeNode *root, int key)
+int ceildata(TreeNode *root, int key)
 {
   int ceil = -1;
   while (root)
@@ -48,15 +74,15 @@ int ceilVal(TreeNode *root, int key)
 vector<int> floorCeilOfBST(TreeNode *root, int key)
 {
   // your code goes here
-  int floor = floorVal(root, key);
-  int ceil = ceilVal(root, key);
+  int floor = floordata(root, key);
+  int ceil = ceildata(root, key);
   return {floor, ceil};
 }
 
 int main()
 {
   TreeNode *root = root->takeInputLevelWise();
-  cout << "Enter key value " << endl;
+  cout << "Enter key dataue " << endl;
   int key;
   cin >> key;
   vector<int> ans = floorCeilOfBST(root, key);
