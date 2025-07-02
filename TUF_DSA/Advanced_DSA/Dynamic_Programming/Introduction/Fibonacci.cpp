@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int fib_Space(int n)
+{
+  int prev = 1;
+  int prev2 = 0;
+  for (int i = 2; i <= n; i++)
+  {
+    int curr_i = prev + prev2;
+    prev2 = prev;
+    prev = curr_i;
+  }
+  return prev;
+}
+
 int fibTabu(int n)
 {
   vector<int> dp(n + 1, 0);
@@ -45,6 +58,7 @@ int main()
   int n;
   cin >> n;
   vector<int> memo(n + 1, -1);
+  cout << fib_Space(n) << endl;
   cout << fibMemo(n, memo) << endl;
   cout << fibTabu(n) << endl;
   cout << fibonacci(n) << endl;
