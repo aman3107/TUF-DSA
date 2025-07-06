@@ -1,6 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int stockBuySellSpace(vector<int> &arr, int n)
+{
+  vector<int> prev(2, 0), curr(2, 0);
+  prev[0] = 0;
+  prev[1] = 0;
+  for (int i = n - 1; i >= 0; i--)
+  {
+    for (int buy = 0; buy <= 1; buy++)
+    {
+      if (buy)
+      {
+        int profitBuy = prev[0] - arr[i];
+        int profitNotBuy = prev[1];
+        curr[buy] = max(profitBuy, profitNotBuy);
+      }
+      else
+      {
+        int profitSell = prev[1] + arr[i];
+        int profitNotSell = prev[0];
+        curr[buy] = max(profitSell, profitNotSell);
+      }
+    }
+    prev = curr;
+  }
+  return prev[1];
+}
+
 int stockBuySellLeet(vector<int> &arr, int n)
 {
   int profit = 0;
@@ -107,6 +134,9 @@ int main()
     cin >> data;
     arr.push_back(data);
   }
+  cout << stockBuySellSpace(arr, n) << endl;
+  cout << stockBuySellTabu(arr, n) << endl;
+  cout << stockBuySellLeet(arr, n) << endl;
   cout << stockBuySellMemo(arr, n) << endl;
   cout << stockBuySell(arr, n) << endl;
 }
