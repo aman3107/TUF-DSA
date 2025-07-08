@@ -132,15 +132,17 @@ bool helperRecur(int ind, int target, vector<int> &arr)
 bool equalPartition(int n, vector<int> arr)
 {
   int sum = 0;
+  // Count the total Sum
   for (int i = 0; i < n; i++)
   {
     sum += arr[i];
   }
+  // If sum is odd then we can not divide the arr in two halves
   if (sum % 2 == 1)
   {
     return false;
   }
-
+  // If S is even, then we need to find a subset in the input array whose sum is equal to S/2 because if we find one subset with sum S/2, the remaining elements sum will be automatically S/2.
   int target = sum / 2;
   return helperRecur(n - 1, target, arr);
 }
