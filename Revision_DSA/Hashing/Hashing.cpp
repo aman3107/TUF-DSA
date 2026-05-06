@@ -1,6 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int subarraysWithXorK(vector<int> &nums, int k)
+{
+  unordered_map<int, int> mpp;
+  mpp[0] = 1;
+  int prefixXor = 0;
+  int cnt = 0;
+  for (int i = 0; i < nums.size(); i++)
+  {
+    prefixXor ^= nums[i];
+    int x = prefixXor ^ k;
+    if (mpp.find(x) != mpp.end())
+    {
+      cnt += mpp[x];
+    }
+    mpp[prefixXor]++;
+  }
+  return cnt;
+}
+
 int subarraySum(vector<int> &nums, int k)
 {
   unordered_map<int, int> mpp;
