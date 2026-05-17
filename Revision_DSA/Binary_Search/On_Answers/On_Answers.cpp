@@ -1,6 +1,59 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool findNoOfBlossom(vector<int> &nums, int day, int m, int k)
+{
+  int noOfB = 0;
+  int cnt = 0;
+  for (int i = 0; i < nums.size(); i++)
+  {
+    if (nums[i] <= day)
+    {
+      cnt++;
+    }
+    else
+    {
+      noOfB += (cnt / k);
+      cnt = 0;
+    }
+  }
+  noOfB += (cnt / k);
+  return noOfB >= m;
+}
+
+int roseGarden(int n, vector<int> nums, int k, int m)
+{
+  int val = 1LL * k * m;
+  if (val > nums.size())
+  {
+    return -1;
+  }
+  int minN = INT_MAX;
+  int maxN = INT_MIN;
+  int ans = -1;
+  for (int i = 0; i < nums.size(); i++)
+  {
+    minN = min(minN, nums[i]);
+    maxN = max(maxN, nums[i]);
+  }
+  int low = minN;
+  int high = maxN;
+  while (low <= high)
+  {
+    int mid = low + (high - low) / 2;
+    if (findNoOfBlossom(nums, mid, m, k))
+    {
+      ans = mid;
+      high = mid - 1;
+    }
+    else
+    {
+      low = mid + 1;
+    }
+  }
+  return ans;
+}
+
 long long computeHour(vector<int> &nums, int div)
 {
   long long int totalH = 0;
